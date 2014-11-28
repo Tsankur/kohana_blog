@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Blog/Admin/Admin Panel</title>
+	<link rel="stylesheet" href='<?= URL::base()?>assets/css/admin.css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="<?= URL::base()?>assets/js/tinymce/tinymce.min.js"></script>
+	<script>
+		var postId = <?= $postId; ?>;
+		var baseUrl = <?= URL::base(); ?>;
+	</script>
+	<script src="<?= URL::base()?>assets/js/admin_script.js"></script>
+</head>
+<body>
+	<header class="base">
+		<div>
+			<h1>Admin Panel</h1>
+			<div>
+				<?=$loginString; ?>
+				<nav>
+					<ul>
+						<li><a href="<?= URL::base()?>posts/page/1">Accueil</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<div class="main base flex">
+		<aside>
+			<ul>
+				<li class="panelSelected">Posts</li>
+				<li>Images</li>
+				<li>Users</li>
+				<li>Templates</li>
+			</ul>
+		</aside>
+		<div>
+			<section class="show" id="Posts">
+				<h3 id="postSectionTitle">New post </h3>
+				<form id="newPostForm">
+					<fieldset>
+						<legend>Contenu</legend>
+						<div>
+							<label for="title">Titre : </label>
+							<input id="title" type="text" name="title"/>
+						</div>
+						<div>
+							<label for="content">Contenu : </label>
+							<textarea name="content" id="tinyMCE"></textarea>
+						</div>
+					</fieldset>
+					<button id="submitPost" type="button">Envoyer</button>
+					<button id="newPost" type="button">Nouveau</button>
+				</form>
+				<h3>Tags</h3>
+				<div id="tagSelected">
+					<span>Selected : </span>
+				</div>
+				<div id="tagAvailable">
+					<hr>
+					<span>Available : </span>
+					<?= $tagsString ?>
+				</div>
+				<form id="addTagForm">
+					<label for="tag">Ajouter un tag</label>
+					<input id="tagName" name="tag"/>
+					<button type="button" id="sendTag">Ajouter</button>
+				</form>
+				<h3>Images</h3>
+				<div>
+					<div class="imageSelect">
+						<?= $imagesString ?>
+					</div>
+					<hr>
+					<form id="uploadImageForm" enctype="multipart/form-data" action="javascript:;" method="POST">
+						<label for="file">Selectionner une image</label>
+						<input type="file" accept=".png,.jpg,.gif" name="file"/>
+						<button id="uploadButton" type="submit">Envoyer</button>
+					</form>
+				</div>
+				<h3>Posts</h3>
+				<table id="postsTable" border="1">
+					<thead>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Pseudo</th>
+						<th>Date</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</thead>
+					<?= $postsString ?>
+				</table>
+			</section>
+			<section id="Images">
+				<h3>Images</h3>
+				<div>
+					<?= $imagesString ?>
+				</div>
+				<form id="uploadImageForm2" enctype="multipart/form-data" action="javascript:;" method="POST">
+					<label for="file">Selectionner une image</label>
+					<input type="file" accept=".png,.jpg,.gif" name="file"/>
+					<button id="uploadButton2" type="submit">Envoyer</button>
+				</form>
+			</section>
+			<section id="Users">
+				<h3>Users</h3>
+				<table border="1">
+					<thead>
+						<th>Usermame</th>
+						<th>Pseudo</th>
+						<th>Email</th>
+						<th>Admin</th>
+					</thead>
+					<?= $usersString ?>
+				</table>
+			</section>
+			<section id="Templates">
+				<h3>Templates</h3>
+				<?= $templatesString ?>
+			</section>
+		</div>
+	</div>
+</body>
+</html>
